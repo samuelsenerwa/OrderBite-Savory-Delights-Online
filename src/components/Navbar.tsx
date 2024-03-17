@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link href="/">Order Bite</Link>
       </div>
       {/* MOBILE MENU */}
-      <div>
+      <div className="md:hidden">
         <Menu />
       </div>
       {/* RIGHT LINKS */}
