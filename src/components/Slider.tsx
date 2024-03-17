@@ -33,18 +33,16 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] lg:flex-row bg-fuchsia-100">
+    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-6rem)] lg:flex-row">
       {/* TEXT CONTAINER */}
-      <div className="flex-1 flex items-center justify-center flex-col gap-8 text-red-500 font-bold lg:h-full">
+      <div className="flex-1 flex items-center justify-center flex-col gap-8 text-red-500 font-bold">
         <h1 className="text-5xl text-center uppercase p-4 md:p-10 md:text-6xl xl:text-7xl">
           {data[currentSlide].title}
         </h1>
-        <button className="bg-red-500 text-white rounded-lg py-4 px-8">
-          Order Now
-        </button>
+        <button className="bg-red-500 text-white py-4 px-8">Order Now</button>
       </div>
       {/*  Image Container */}
-      <div className="w-full flex-1 relative lg:h-full">
+      <div className="w-full flex-1 relative">
         <Image
           src={data[currentSlide].image}
           alt=""
