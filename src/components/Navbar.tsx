@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Menu from "./Menu";
 import Link from "next/link";
 import Carticon from "./Carticon";
+import UserLinks from "./UserLinks";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -28,11 +29,7 @@ const Navbar = () => {
           <Image src="/phone.png" alt="" width={20} height={20} />
           <span>+1 2344 2311</span>
         </div>
-        {!user ? (
-          <Link href="/login">Login</Link>
-        ) : (
-          <Link href="/menu">Orders</Link>
-        )}
+        <UserLinks />
         <Carticon />
       </div>
     </div>
