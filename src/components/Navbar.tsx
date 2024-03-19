@@ -28,7 +28,11 @@ const Navbar = () => {
           <Image src="/phone.png" alt="" width={20} height={20} />
           <span>+1 2344 2311</span>
         </div>
-        {!user ? <Link href="/">Login</Link> : <Link href="/menu">Orders</Link>}
+        {!user ? (
+          <Link href="/login">Login</Link>
+        ) : (
+          <Link href="/menu">Orders</Link>
+        )}
         <Carticon />
       </div>
     </div>
