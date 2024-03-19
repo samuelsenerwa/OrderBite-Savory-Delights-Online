@@ -45,6 +45,8 @@ model Order {
   products  Json[]
   status    String
   intent_id String?  @unique //strip id
+  user      User     @relation(fields: [userEmail], references: [email])
+  userEmail String
 }
 
 model Account {
@@ -83,6 +85,7 @@ model User {
   isAdmin       Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
+  Order         Order[]
 }
 
 model VerificationToken {
