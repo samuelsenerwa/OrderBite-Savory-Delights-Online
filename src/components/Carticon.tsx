@@ -1,11 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useCartStore } from "@/utils/store";
 
 const Carticon = () => {
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
+
   const { totalItems } = useCartStore();
   return (
     <Link href="/cart" className="flex items-center gap-4">
