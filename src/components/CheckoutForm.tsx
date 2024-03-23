@@ -12,7 +12,6 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  //   const [email, setEmail] = useState(null);
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,8 +50,6 @@ const CheckoutForm = () => {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -61,16 +58,10 @@ const CheckoutForm = () => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
         return_url: "http://localhost:3000/success",
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message || "Something went wrong!");
     } else {
@@ -80,26 +71,42 @@ const CheckoutForm = () => {
     setIsLoading(false);
   };
 
-  //   const paymentElementOptions = {
-  //     layout: "tabs",
-  //   };
-
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement
-        id="payment-element"
-        options={{
-          layout: "tabs",
-        }}
-      />
+    <form
+      id="payment-form"
+      onSubmit={handleSubmit}
+      className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg"
+    >
+      <div className="mb-6">
+        <label
+          htmlFor="payment-element"
+          className="block text-gray-700 font-bold mb-2"
+        >
+          Card Details
+        </label>
+        <PaymentElement
+          id="payment-element"
+          options={{
+            layout: "tabs",
+          }}
+          className="border border-gray-300 p-3 rounded-md w-full"
+        />
+      </div>
       <AddressForm />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+        className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
       </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && (
+        <div id="payment-message" className="text-red-500 mt-4">
+          {message}
+        </div>
+      )}
     </form>
   );
 };

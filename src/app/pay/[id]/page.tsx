@@ -2,15 +2,14 @@
 
 import CheckoutForm from "@/components/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
-import React, { useEffect, useState } from "react";
+import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
+import { useEffect, useState } from "react";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
 const PayPage = ({ params }: { params: { id: string } }) => {
-  // statehook for stripe payment
   const [clientSecret, setClientSecret] = useState("");
 
   const { id } = params;
@@ -37,7 +36,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
   const options: StripeElementsOptions = {
     clientSecret,
     appearance: {
-      theme: "night",
+      theme: "stripe",
     },
   };
 

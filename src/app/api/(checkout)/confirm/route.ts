@@ -9,12 +9,10 @@ export const PUT = async ({ params }: { params: { intentId: string } }) => {
       where: {
         intent_id: intentId,
       },
-      data: {
-        status: "Being prepared!",
-      },
+      data: { status: "Being prepared!" },
     });
     return new NextResponse(
-      JSON.stringify({ message: "Order has been updated!" }),
+      JSON.stringify({ message: "Order has been updated" }),
       { status: 200 }
     );
   } catch (err) {
