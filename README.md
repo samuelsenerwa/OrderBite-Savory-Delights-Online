@@ -10,14 +10,14 @@ yarn dev
 
 Run the command below to install all the dependacy on the project
 
-```
+```bash
 yarn
 ```
 
 Make sure docker container for postgres is running;
 
 ```bash
-cd /src/docker
+cd src/docker
 
 docker-compose up
 ```
@@ -25,7 +25,7 @@ docker-compose up
 
 After having docker container up and running, run prisma on port localhost:5555
 
-```
+```bash
 npx prisma studio
 ```
 
